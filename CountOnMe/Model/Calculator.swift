@@ -20,7 +20,11 @@ class Calculator {
     }
     
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" }
+        if self.elements.count >= 1 {
+            return self.expressionIsCorrect
+        }
+        return false
+    }
     
     func calcul() -> String {
         var operationsToReduce = elements
@@ -58,7 +62,6 @@ class Calculator {
                 operationsToReduce = Array(operationsToReduce.dropFirst(3))
                 operationsToReduce.insert("\(result)", at: 0)
             }
-            
         }
         
       return operationsToReduce.first!

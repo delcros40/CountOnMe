@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
     
- 
+    
     var expressionHaveResult: Bool {
         return textView.text.firstIndex(of: "=") != nil
     }
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
             self.present(alertVC, animated: true, completion: nil)
         }
     }
-
+    
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
             let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
@@ -77,11 +77,9 @@ class ViewController: UIViewController {
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             return self.present(alertVC, animated: true, completion: nil)
         }
-        
         let result = calculator.calcul()
-        
         textView.text.append(" = \(result)")
     }
-
+    
 }
 
