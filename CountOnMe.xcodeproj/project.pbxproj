@@ -14,6 +14,8 @@
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		1FA43BE8224E569A00F565CB /* SimpleCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BE7224E569A00F565CB /* SimpleCalcTests.swift */; };
 		1FA43BF3224E569A00F565CB /* SimpleCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */; };
+		279A7279234E70E90022F4D3 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A7278234E70E90022F4D3 /* Calculator.swift */; };
+		279A727B234E71930022F4D3 /* OperatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A727A234E71930022F4D3 /* OperatorEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		1FA43BEE224E569A00F565CB /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCalcUITests.swift; sourceTree = "<group>"; };
 		1FA43BF4224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		279A7278234E70E90022F4D3 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		279A727A234E71930022F4D3 /* OperatorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,10 @@
 		1FA43BD1224E569900F565CB /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
+				279A727D2351CD560022F4D3 /* Vue */,
+				279A727C2351CD2C0022F4D3 /* Controller */,
+				279A7277234E70CA0022F4D3 /* Model */,
 				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
-				1FA43BD4224E569900F565CB /* ViewController.swift */,
-				1FA43BD6224E569900F565CB /* Main.storyboard */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
 				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BDE224E569A00F565CB /* Info.plist */,
@@ -123,6 +128,31 @@
 				1FA43BF4224E569A00F565CB /* Info.plist */,
 			);
 			path = CountOnMeUITests;
+			sourceTree = "<group>";
+		};
+		279A7277234E70CA0022F4D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				279A7278234E70E90022F4D3 /* Calculator.swift */,
+				279A727A234E71930022F4D3 /* OperatorEnum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		279A727C2351CD2C0022F4D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FA43BD4224E569900F565CB /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		279A727D2351CD560022F4D3 /* Vue */ = {
+			isa = PBXGroup;
+			children = (
+				1FA43BD6224E569900F565CB /* Main.storyboard */,
+			);
+			path = Vue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +288,8 @@
 			files = (
 				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
 				1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */,
+				279A727B234E71930022F4D3 /* OperatorEnum.swift in Sources */,
+				279A7279234E70E90022F4D3 /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincentsaluzzo.CountOnMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delcros.CountOnMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -455,7 +487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincentsaluzzo.CountOnMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.delcros.CountOnMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
