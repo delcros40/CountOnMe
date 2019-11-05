@@ -12,8 +12,8 @@ import UIKit
 enum OperandEnum: String {
     case more = "+"
     case less = "-"
-    case multiply = "*"
-    case divide = "/"
+    case multiply = "×"
+    case divide = "÷"
     
     static let allValues: [String] = [more.rawValue, less.rawValue, multiply.rawValue, divide.rawValue]
 }
