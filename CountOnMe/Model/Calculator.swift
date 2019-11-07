@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 /// allows to manage the calculation
 class Calculator {

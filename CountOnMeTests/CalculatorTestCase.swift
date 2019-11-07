@@ -85,5 +85,18 @@ class CalculatorTestCase: XCTestCase {
         XCTAssert(Int(try calculator.calcul()) == 7)
     }
     
+    func testDivideByZero() {
+        calculator.elements = ["2","/","0"]
+        XCTAssert(Int(try calculator.calcul()) == 1)
+    }
+    
+    func testDoubleOperator() {
+        calculator.elements = ["2","/"]
+        if calculator.canAddOperator {
+            calculator.elements.append("+")
+        }
+        XCTAssert(calculator.elements.last! != "+")
+    }
+    
 }
 

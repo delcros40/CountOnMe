@@ -61,7 +61,7 @@ class ViewController: UIViewController {
             case OperandEnum.multiply.rawValue:
                 calculator.elements.append("×")
             case OperandEnum.divide.rawValue:
-                calculator.elements.append("÷")
+                calculator.elements.append("/")
             default: break
             }
             self.updateTextViewCalcul()
