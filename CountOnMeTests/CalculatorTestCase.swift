@@ -39,7 +39,7 @@ class CalculatorTestCase: XCTestCase {
     }
     
     func testGivenStringNumbersHasOneMember_whenExpressionHaveEnoughElementTriggered_thenSendsTrue(){
-        calculator.elements = ["1","+","2"]
+        calculator.elements = ["12","+","2"]
         XCTAssert(calculator.expressionHaveEnoughElement)
     }
     
@@ -55,32 +55,48 @@ class CalculatorTestCase: XCTestCase {
     
     func testMore() {
         calculator.elements = ["2","+","2"]
-        XCTAssert(Int(calculator.calcul()) == 4)
+        XCTAssert(Int(try calculator.calcul()) == 4)
     }
     func testLess() {
         calculator.elements = ["2","-","2"]
-        XCTAssert(Int(calculator.calcul()) == 0)
+        XCTAssert(Int(try calculator.calcul()) == 0)
     }
     func testMultiply() {
         calculator.elements = ["2","*","3"]
-        XCTAssert(Int(calculator.calcul()) == 6)
+        XCTAssert(Int(try calculator.calcul()) == 6)
     }
     func testDivide() {
         calculator.elements = ["2","/","2"]
-        XCTAssert(Int(calculator.calcul()) == 1)
+        XCTAssert(Int(try calculator.calcul()) == 1)
     }
 
-    func test() {
-        calculator.elements = ["2"]
-        XCTAssert(Int(calculator.calcul()) == 2)
+    func testUnknownOperator() {
+        calculator.elements = ["2",")","3"]
+        XCTAssertThrowsError(try calculator.calcul())
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testoperationPriority1() {
+        calculator.elements = ["2","+","3","/","3","+","4"]
+        XCTAssert(Int(try calculator.calcul()) == 7)
     }
-
+    
+    func testoperationPriority2() {
+        calculator.elements = ["3","/","3","+","2","+","4"]
+        XCTAssert(Int(try calculator.calcul()) == 7)
+    }
+    
+    func testDivideByZero() {
+        calculator.elements = ["2","/","0"]
+        XCTAssert(Int(try calculator.calcul()) == 1)
+    }
+    
+    func testDoubleOperator() {
+        calculator.elements = ["2","/"]
+        if calculator.canAddOperator {
+            calculator.elements.append("+")
+        }
+        XCTAssert(calculator.elements.last! != "+")
+    }
+    
 }
 
