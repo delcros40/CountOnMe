@@ -75,12 +75,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        if !calculator.expressionIsCorrect {
-            self.presentUIAlert(with: "Entrez une expression correcte !")
+        guard calculator.expressionIsCorrect else {
+            return self.presentUIAlert(with: "Entrez une expression correcte !")
         }
-        if !calculator.expressionHaveEnoughElement {
-            self.presentUIAlert(with: "Démarrez un nouveau calcul !")
+        
+        guard calculator.expressionHaveEnoughElement else {
+            return self.presentUIAlert(with: "Démarrez un nouveau calcul !")
         }
+        
         do {
             let result = try calculator.calcul()
             textView.text.append(String(format: " = %0.2f", Double(result)!.rounded()))
