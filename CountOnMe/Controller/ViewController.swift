@@ -75,7 +75,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        if !calculator.expressionIsCorrect  {
+        if !calculator.expressionIsCorrect {
             self.presentUIAlert(with: "Entrez une expression correcte !")
         }
         if !calculator.expressionHaveEnoughElement {
@@ -100,7 +100,6 @@ class ViewController: UIViewController {
         self.updateTextViewCalcul()
     }
 
-    
     private func updateTextViewCalcul() {
         var text = ""
         for stringNumber in self.calculator.elements {
