@@ -55,50 +55,51 @@ class ViewController: UIViewController {
         if calculator.canAddOperator {
             switch sender.titleLabel!.text {
             case OperandEnum.more.rawValue:
-                calculator.elements.append("+")
+                calculator.elements.append(OperandEnum.more.rawValue)
             case OperandEnum.less.rawValue:
-                calculator.elements.append("-")
+                calculator.elements.append(OperandEnum.less.rawValue)
             case OperandEnum.multiply.rawValue:
-                calculator.elements.append("×")
+                calculator.elements.append(OperandEnum.multiply.rawValue)
             case OperandEnum.divide.rawValue:
-                calculator.elements.append("/")
+                calculator.elements.append(OperandEnum.divide.rawValue)
             default: break
             }
             self.updateTextViewCalcul()
         } else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
+            self.presentUIAlert(with: "Un operateur est déja mis !")
         }
     }
     
     @IBAction func tappedACButton(_ sender: UIButton) {
-        calculator.elements = []
-        self.updateTextViewCalcul()
+        self.resetOperation()
     }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
-        guard calculator.expressionIsCorrect else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
+        if !calculator.expressionIsCorrect  {
+            self.presentUIAlert(with: "Entrez une expression correcte !")
         }
-        
-        guard calculator.expressionHaveEnoughElement else {
-            let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
+        if !calculator.expressionHaveEnoughElement {
+            self.presentUIAlert(with: "Démarrez un nouveau calcul !")
         }
         do {
             let result = try calculator.calcul()
-            textView.text.append(" = \(result)")
+            textView.text.append(String(format: " = %0.2f", Double(result)!.rounded()))
+        } catch OperandError.unknownOperator {
+            self.resetOperation()
+            self.presentUIAlert(with: OperandError.unknownOperator.rawValue)
+        } catch OperandError.divideByZero {
+            self.resetOperation()
+            self.presentUIAlert(with: OperandError.divideByZero.rawValue)
         } catch {
-            let alertVC = UIAlertController(title: "error", message: "Unknown operator", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            return self.present(alertVC, animated: true, completion: nil)
+            print("error")
         }
         
     }
+    private func resetOperation() {
+        calculator.elements = []
+        self.updateTextViewCalcul()
+    }
+
     
     private func updateTextViewCalcul() {
         var text = ""

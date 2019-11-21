@@ -55,19 +55,19 @@ class CalculatorTestCase: XCTestCase {
     
     func testMore() {
         calculator.elements = ["2","+","2"]
-        XCTAssert(Int(try calculator.calcul()) == 4)
+        XCTAssert(Double(try calculator.calcul()) == Double(4))
     }
     func testLess() {
         calculator.elements = ["2","-","2"]
-        XCTAssert(Int(try calculator.calcul()) == 0)
+        XCTAssert(Double(try calculator.calcul()) == Double(0))
     }
     func testMultiply() {
-        calculator.elements = ["2","*","3"]
-        XCTAssert(Int(try calculator.calcul()) == 6)
+        calculator.elements = ["2","×","3"]
+        XCTAssert(Double(try calculator.calcul()) == Double(6))
     }
     func testDivide() {
-        calculator.elements = ["2","/","2"]
-        XCTAssert(Int(try calculator.calcul()) == 1)
+        calculator.elements = ["2","÷","2"]
+        XCTAssert(Double(try calculator.calcul()) == Double(1))
     }
 
     func testUnknownOperator() {
@@ -76,26 +76,26 @@ class CalculatorTestCase: XCTestCase {
     }
     
     func testoperationPriority1() {
-        calculator.elements = ["2","+","3","/","3","+","4"]
-        XCTAssert(Int(try calculator.calcul()) == 7)
+        calculator.elements = ["2","+","3","÷","3","+","4"]
+        XCTAssert(Double(try calculator.calcul()) == Double(7))
     }
     
     func testoperationPriority2() {
-        calculator.elements = ["3","/","3","+","2","+","4"]
-        XCTAssert(Int(try calculator.calcul()) == 7)
+        calculator.elements = ["3","÷","3","+","2","+","4"]
+        XCTAssert(Double(try calculator.calcul()) == Double(7))
     }
     
     func testDivideByZero() {
-        calculator.elements = ["2","/","0"]
-        XCTAssert(Int(try calculator.calcul()) == 1)
+        calculator.elements = ["2","÷","0"]
+        XCTAssertThrowsError(try calculator.calcul())
     }
     
     func testDoubleOperator() {
-        calculator.elements = ["2","/"]
+        calculator.elements = ["2","+"]
         if calculator.canAddOperator {
-            calculator.elements.append("+")
+            calculator.elements.append("-")
         }
-        XCTAssert(calculator.elements.last! != "+")
+        XCTAssert(calculator.elements.last! == "+")
     }
     
 }

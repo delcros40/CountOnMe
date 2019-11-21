@@ -3,11 +3,15 @@
 # A list of devices you want to take the screenshots from
  devices([
    "iPhone 8",
-   "iPhone SE",
-   "iPhone X"
+   "iPhone 8 Plus",
+   "iPhone 11",
+   "iPhone 11 Pro",
+   "iPhone 11 Pro Max"
  ])
 
- languages(["fr-FR"])
+ languages([
+   "fr-FR"
+ ])
 
 # The name of the scheme which contains the UI Tests
 # Where should the resulting screenshots be stored?
